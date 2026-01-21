@@ -24,3 +24,16 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* globals.css */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(var(--brand-primary-rgb), 0.1);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #3b82f6; /* ან შენი ლურჯი ფერი */
+  border-radius: 10px;
+}
