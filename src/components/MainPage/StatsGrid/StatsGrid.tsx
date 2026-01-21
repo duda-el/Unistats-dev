@@ -1,5 +1,6 @@
 import React from "react";
 import { BarChart, FileText, Tag, UserPlus } from "lucide-react";
+import CountUp from "react-countup";
 
 const stats = [
   {
@@ -61,8 +62,14 @@ const StatsGrid = () => {
 
               <div className="flex flex-col">
                 <span className="text-2xl font-bold text-slate-800 tracking-tight">
-                  {stat.value}
+                  <CountUp
+                    start={0}
+                    end={parseFloat(stat.value.replace(/[^0-9.]/g, ""))}
+                    duration={1.5}
+                    suffix={stat.value.replace(/[0-9.]/g, "")}
+                  />
                 </span>
+
                 <span className="text-[12px] font-bold text-slate-500/80 uppercase tracking-wide mt-1">
                   {stat.title}
                 </span>

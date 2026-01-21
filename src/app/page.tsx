@@ -1,3 +1,5 @@
+"use client";
+
 import StatsGrid from "@/src/components/MainPage/StatsGrid/StatsGrid";
 import CalendarStrip from "@/src/components/MainPage/CalendarStrip/CalendarStrip";
 import UniversityList from "@/src/components/MainPage/UniversityList/UniversityList";
