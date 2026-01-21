@@ -8,6 +8,8 @@ import UniversityRanking from "@/src/components/MainPage/UniversityRanking/Unive
 import GeorgiaMap from "@/src/components/MainPage/GeorgiaMap/GeorgiaMap";
 // შემოგვაქვს შედარების ახალი კომპონენტი
 import CompareUniversities from "@/src/components/MainPage/CompareUniversities/CompareUniversities";
+import EventsSection from "@/src/components/MainPage/EventsSection/EventsSection";
+import StudentVibeCard from "@/src/components/MainPage/GrantPredictor/GrantPredictor";
 
 export default function Home() {
   return (
@@ -15,12 +17,13 @@ export default function Home() {
       {/* მარცხენა სვეტი (მთავარი კონტენტი) */}
       <div className="lg:col-span-8 flex flex-col gap-8">
         <StatsGrid />
-        
+
         {/* უნივერსიტეტების შედარების ქარდი */}
-        
+
         <PromoBanner />
         <UniversityRanking />
         <CompareUniversities />
+        <EventsSection />
       </div>
 
       {/* მარჯვენა სვეტი (დამხმარე პანელი) */}
@@ -28,6 +31,7 @@ export default function Home() {
         <CalendarStrip />
         <UniversityList />
         <GeorgiaMap />
+        <StudentVibeCard />
       </div>
     </div>
   );
