@@ -13,34 +13,35 @@ const days = [
 
 const CalendarStrip = () => {
   return (
-    <div className="bg-white rounded-[32px] p-6 shadow-sm border border-gray-50">
-      <div className="flex justify-between items-start relative">
+    /* Removed h-full and reduced p-6 to p-5 */
+    <div className="bg-white rounded-[32px] p-5 shadow-sm border border-gray-50 relative w-full">
+      <div className="flex justify-between items-center relative">
         {days.map((day, index) => (
           <div
             key={index}
-            className={`flex flex-col items-center gap-6 px-4 py-2 rounded-full transition-all duration-300 ${
+            className={`flex flex-col items-center gap-3 px-3 py-2 rounded-full transition-all duration-300 ${
               day.active 
-                ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/40 -translate-y-2 pb-6" 
+                ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/40 -translate-y-1 pb-4" 
                 : "text-slate-800"
             }`}
           >
-            <span className={`text-sm font-medium ${day.active ? "text-white/90" : "text-slate-500"}`}>
+            <span className={`text-[11px] font-bold ${day.active ? "text-white" : "text-slate-400"}`}>
               {day.label}
             </span>
             
-            <span className="text-xl font-bold tracking-tight">
+            <span className="text-lg font-bold tracking-tight">
               {day.date}
             </span>
 
             {day.active && (
-              <div className="w-1.5 h-1.5 bg-white rounded-full mt-auto" />
+              <div className="w-1.5 h-1.5 bg-white rounded-full mt-1" />
             )}
           </div>
         ))}
 
-        {/* კალენდრის პატარა აიქონი მარჯვენა დაბალ კუთხეში */}
-        <div className="absolute bottom-0 right-0 p-1">
-           <CalendarIcon size={18} className="text-brand-primary/40" />
+        {/* Calendar Icon Positioned Bottom Right */}
+        <div className="absolute -bottom-1 -right-1 opacity-40">
+           <CalendarIcon size={16} className="text-brand-primary" />
         </div>
       </div>
     </div>

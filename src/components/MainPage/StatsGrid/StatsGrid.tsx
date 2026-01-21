@@ -6,69 +6,67 @@ const stats = [
     title: "სტუდენტი",
     value: "250k+",
     change: "+8% მეტი ვიდრე 2023 წელს",
-    icon: <BarChart size={24} />,
-    bgColor: "bg-[#FFF0F3]", // ღია ვარდისფერი
-    iconColor: "text-[#EE5D70]",
+    icon: <BarChart size={20} />,
+    bgColor: "bg-[#FFF0F3]", 
     iconBg: "bg-[#EE5D70]",
   },
   {
     title: "აბიტურიენტი",
     value: "42K+",
     change: "+15% მეტი ვიდრე 2023 წელს",
-    icon: <FileText size={24} />,
-    bgColor: "bg-[#FFF8ED]", // ღია ნარინჯისფერი
-    iconColor: "text-[#FFB547]",
+    icon: <FileText size={20} />,
+    bgColor: "bg-[#FFF8ED]", 
     iconBg: "bg-[#FFB547]",
   },
   {
     title: "უნივერსიტეტი",
     value: "61",
     change: "+0% მეტი ვიდრე 2023 წელს",
-    icon: <Tag size={24} />,
-    bgColor: "bg-[#E6FBF0]", // ღია მწვანე
-    iconColor: "text-[#3BD97B]",
+    icon: <Tag size={20} />,
+    bgColor: "bg-[#E6FBF0]", 
     iconBg: "bg-[#3BD97B]",
   },
   {
     title: "საერთაშორისო სტუდენტი",
     value: "12K+",
     change: "+4% მეტი ვიდრე 2023 წელს",
-    icon: <UserPlus size={24} />,
-    bgColor: "bg-[#F4F1FF]", // ღია იისფერი
-    iconColor: "text-[#8E79F3]",
+    icon: <UserPlus size={20} />,
+    bgColor: "bg-[#F4F1FF]", 
     iconBg: "bg-[#8E79F3]",
   },
 ];
 
 const StatsGrid = () => {
   return (
-    <div className="mb-8">
-      <div className="mb-6">
+    <div className="bg-white rounded-[32px] p-8 shadow-sm border border-gray-50 h-full flex flex-col">
+      <div className="mb-8">
         <h3 className="text-xl font-bold text-slate-800">2024 წლის მონაცემები</h3>
         <p className="text-sm text-slate-400">სტატისტიკა</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-4 flex-1">
         {stats.map((stat, index) => (
           <div
             key={index}
-            className={`${stat.bgColor} rounded-[32px] p-6 flex flex-col transition-transform hover:scale-[1.02] duration-200`}
+            className={`${stat.bgColor} rounded-[28px] p-5 flex flex-col justify-between transition-transform hover:scale-[1.02] duration-200`}
           >
-            <div className={`w-12 h-12 ${stat.iconBg} rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg`}>
-              {stat.icon}
-            </div>
-            
-            <div className="flex flex-col gap-1">
-              <span className="text-3xl font-bold text-slate-800 tracking-tight">
-                {stat.value}
-              </span>
-              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                {stat.title}
-              </span>
+            <div>
+              <div className={`w-10 h-10 ${stat.iconBg} rounded-xl flex items-center justify-center text-white mb-6 shadow-sm`}>
+                {stat.icon}
+              </div>
+              
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold text-slate-800 tracking-tight">
+                  {stat.value}
+                </span>
+                <span className="text-[11px] font-bold text-slate-500/80 uppercase tracking-wide mt-1">
+                  {stat.title}
+                </span>
+              </div>
             </div>
 
-            <div className="mt-4 pt-4 border-t border-black/5">
-              <span className="text-[11px] font-bold text-brand-primary">
+            <div className="mt-6 pt-3 border-t border-black/5">
+              <span className="text-[9px] font-bold text-brand-primary">
                 {stat.change}
               </span>
             </div>

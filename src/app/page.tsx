@@ -7,24 +7,21 @@ import GeorgiaMap from "@/src/components/MainPage/GeorgiaMap/GeorgiaMap"; // დ
 
 export default function Home() {
   return (
-    <div className="max-w-[1400px] mx-auto space-y-8 pb-12">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-        
-        {/* მარცხენა მხარე (2/3 სიგანე) */}
-        <div className="lg:col-span-2 space-y-8">
-          <StatsGrid />
-          <PromoBanner />
-          <UniversityRanking />
-        </div>
 
-        {/* მარჯვენა მხარე (1/3 სიგანე) */}
-        <div className="flex flex-col gap-8">
-          <CalendarStrip />
-          <UserRanking />
-          <GeorgiaMap /> {/* აქ ჩავსვით რუკის კომპონენტი */}
-        </div>
-        
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12 items-start">
+      
+      <div className="lg:col-span-8 flex flex-col gap-8">
+        <StatsGrid />
+        <PromoBanner />
+        <UniversityRanking />
       </div>
+
+      <div className="lg:col-span-4 flex flex-col gap-8">
+        <CalendarStrip />
+        <UserRanking />
+        <GeorgiaMap />
+      </div>
+
     </div>
   );
 }
