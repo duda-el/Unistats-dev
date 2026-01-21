@@ -2,43 +2,43 @@ import React from "react";
 import Image from "next/image";
 
 const universities = [
-  { id: 1, name: "GAU", city: "თბილისი", type: "კერძო", logo: "/gau-logo.png" },
+  { id: 1, name: "GAU", city: "თბილისი", type: "კერძო", logo: "/uni_pics/gau-logo.png" },
   {
     id: 2,
     name: "Free Uni",
     city: "თბილისი",
     type: "კერძო",
-    logo: "/free-uni-logo.png",
+    logo: "/uni_pics/free-uni-logo.jpg",
   },
   {
     id: 3,
     name: "TSU",
     city: "თბილისი",
     type: "სახელმწიფო",
-    logo: "/tsu-logo.png",
+    logo: "/uni_pics/tsu-logo.png",
   },
   {
     id: 4,
     name: "KIU",
     city: "ქუთაისი",
     type: "სახელმწიფო",
-    logo: "/kiu-logo.png",
+    logo: "/uni_pics/kiu-logo.jpg",
   },
-  { id: 5, name: "CU", city: "თბილისი", type: "კერძო", logo: "/cu-logo.png" },
+  { id: 5, name: "CU", city: "თბილისი", type: "კერძო", logo: "/uni_pics/cu-logo.jpg" },
   {
     id: 6,
     name: "ISU",
     city: "თბილისი",
     type: "სახელმწიფო",
-    logo: "/ilia-logo.png",
+    logo: "/uni_pics/isu-logo.png",
   },
-  { id: 7, name: "SEU", city: "თბილისი", type: "კერძო", logo: "/seu-logo.png" },
+  { id: 7, name: "SEU", city: "თბილისი", type: "კერძო", logo: "/uni_pics/seu-logo.png" },
   {
     id: 8,
     name: "GTU",
     city: "თბილისი",
     type: "სახელმწიფო",
-    logo: "/gtu-logo.png",
+    logo: "/uni_pics/gtu-logo.jpg",
   },
 ];
 

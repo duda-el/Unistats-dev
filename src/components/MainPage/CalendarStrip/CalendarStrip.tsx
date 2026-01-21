@@ -1,17 +1,37 @@
 import React from "react";
 import { Calendar as CalendarIcon } from "lucide-react";
 
-const days = [
-  { label: "ორშ", date: 20 },
-  { label: "სამ", date: 21 },
-  { label: "ოთხ", date: 22 },
-  { label: "ხუთ", date: 23, active: true },
-  { label: "პარ", date: 24 },
-  { label: "შაბ", date: 25 },
-  { label: "კვი", date: 26 },
-];
+const dayLabels = ["ორშ", "სამ", "ოთხ", "ხუთ", "პარ", "შაბ", "კვი"];
+
+const getWeekDays = () => {
+  const today = new Date();
+  const day = today.getDay(); // 0 = Sun ... 6 = Sat
+  const diffToMonday = (day + 6) % 7;
+
+  const monday = new Date(today);
+  monday.setHours(0, 0, 0, 0);
+  monday.setDate(monday.getDate() - diffToMonday);
+
+  return Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+
+    const isActive =
+      d.getFullYear() === today.getFullYear() &&
+      d.getMonth() === today.getMonth() &&
+      d.getDate() === today.getDate();
+
+    return {
+      label: dayLabels[i],
+      date: d.getDate(),
+      active: isActive,
+    };
+  });
+};
 
 const CalendarStrip = () => {
+  const days = getWeekDays();
+
   return (
     <div className="bg-white rounded-[32px] p-5 shadow-sm border border-gray-50 relative w-full">
       <div className="flex justify-between items-center relative">
@@ -25,16 +45,16 @@ const CalendarStrip = () => {
             }`}
           >
             <span
-              className={`text-[12px] font-bold ${day.active ? "text-white" : "text-slate-400"}`}
+              className={`text-[12px] font-bold ${
+                day.active ? "text-white" : "text-slate-400"
+              }`}
             >
               {day.label}
             </span>
 
             <span className="text-lg font-bold tracking-tight">{day.date}</span>
 
-            {day.active && (
-              <div className="w-1.5 h-1.5 bg-white rounded-full mt-1" />
-            )}
+            {day.active && <div className="w-1.5 h-1.5 bg-white rounded-full mt-1" />}
           </div>
         ))}
 
