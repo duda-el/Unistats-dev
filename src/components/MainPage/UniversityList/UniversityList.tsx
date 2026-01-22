@@ -1,8 +1,15 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const universities = [
-  { id: 1, name: "GAU", city: "თბილისი", type: "კერძო", logo: "/uni_pics/gau-logo.png" },
+  {
+    id: 1,
+    name: "GAU",
+    city: "თბილისი",
+    type: "კერძო",
+    logo: "/uni_pics/gau-logo.png",
+  },
   {
     id: 2,
     name: "Free Uni",
@@ -24,7 +31,13 @@ const universities = [
     type: "სახელმწიფო",
     logo: "/uni_pics/kiu-logo.jpg",
   },
-  { id: 5, name: "CU", city: "თბილისი", type: "კერძო", logo: "/uni_pics/cu-logo.jpg" },
+  {
+    id: 5,
+    name: "CU",
+    city: "თბილისი",
+    type: "კერძო",
+    logo: "/uni_pics/cu-logo.jpg",
+  },
   {
     id: 6,
     name: "ISU",
@@ -32,7 +45,13 @@ const universities = [
     type: "სახელმწიფო",
     logo: "/uni_pics/isu-logo.png",
   },
-  { id: 7, name: "SEU", city: "თბილისი", type: "კერძო", logo: "/uni_pics/seu-logo.png" },
+  {
+    id: 7,
+    name: "SEU",
+    city: "თბილისი",
+    type: "კერძო",
+    logo: "/uni_pics/seu-logo.png",
+  },
   {
     id: 8,
     name: "GTU",
@@ -51,9 +70,11 @@ const UniversityList = () => {
           <h3 className="text-xl font-bold text-[#1B2559]">უნივერსიტეტები</h3>
           <p className="text-xs font-medium text-[#A3AED0]">საქართველო</p>
         </div>
-        <button className="px-5 py-2 bg-brand-accent/20 text-brand-primary text-[10px] font-bold rounded-full hover:bg-brand-accent/40 transition-all uppercase tracking-wider">
-          ყველა
-        </button>
+        <Link href="/universities">
+          <button className="px-5 py-2 bg-brand-accent/20 text-brand-primary text-[10px] font-bold rounded-full hover:bg-brand-accent/40 transition-all uppercase tracking-wider">
+            ყველა
+          </button>
+        </Link>
       </div>
 
       <div className="overflow-hidden">

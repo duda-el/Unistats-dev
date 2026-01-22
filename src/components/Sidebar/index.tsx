@@ -21,7 +21,7 @@ const Sidebar = () => {
   const menuItems = [
     { name: "მთავარი", icon: <LayoutDashboard size={20} />, href: "/" },
     { name: "სტატისტიკა", icon: <BarChart3 size={20} />, href: "/statistics" },
-    { name: "კალენდარი", icon: <Calendar size={20} />, href: "/calendar" },
+    { name: "ივენთები", icon: <Calendar size={20} />, href: "/events" },
     { name: "ჩვენს შესახებ", icon: <Users size={20} />, href: "/about" },
     { name: "FAQ", icon: <HelpCircle size={20} />, href: "/faq" },
   ];
