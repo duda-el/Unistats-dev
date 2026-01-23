@@ -7,7 +7,7 @@ import Image from "next/image";
 const PromoBanner = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  // ჩასვი შენი ვიდეოს ლინკი (მაგ: YouTube Embed)
+  // ჩასვი შენი ვიდეოს ლინკი
   const videoSrc = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
 
   return (
@@ -15,7 +15,7 @@ const PromoBanner = () => {
       
       {!isVideoPlaying ? (
         <>
-          {/* --- საწყისი კონტენტი (ზუსტად შენი დიზაინით) --- */}
+          {/* --- საწყისი კონტენტი (შენი უცვლელი დიზაინით) --- */}
           <div className="relative z-10 max-w-lg p-12 animate-in fade-in duration-500">
             <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
               რა შეუძლია ჩვენ <br /> პლატფორმას?
@@ -38,13 +38,13 @@ const PromoBanner = () => {
             </div>
           </div>
 
-          {/* მარჯვენა მხარე: 3D ილუსტრაციები */}
-          <div className="absolute right-0 top-0 h-full w-1/2 select-none pointer-events-none">
+          {/* მარჯვენა მხარე: 3D ილუსტრაცია (ზომა გასწორებულია) */}
+          <div className="absolute right-15 bottom-5 h-full w-1/2 select-none pointer-events-none">
             <Image
-              src="/image_afdeb0.png" // შენი რალური 3D სურათი
+              src="/assets/images/trophy.png" 
               alt="3D Illustrations"
               fill
-              className="object-contain object-right-bottom scale-110"
+              className="object-contain object-right-bottom scale-90 origin-bottom-right" 
               priority
             />
           </div>
@@ -52,7 +52,6 @@ const PromoBanner = () => {
       ) : (
         /* --- ვიდეო რეჟიმი --- */
         <div className="absolute inset-0 z-30 bg-black animate-in zoom-in-95 duration-500">
-          {/* ვიდეოს დახურვის ღილაკი */}
           <button 
             onClick={() => setIsVideoPlaying(false)}
             className="absolute top-6 right-6 z-40 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full backdrop-blur-md transition-all active:scale-90 shadow-xl"
