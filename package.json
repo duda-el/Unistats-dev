@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@supabase/postgrest-js": "^2.91.1",
+    "@supabase/supabase-js": "^2.91.1",
     "framer-motion": "^12.28.1",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.562.0",
