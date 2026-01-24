@@ -17,14 +17,15 @@ export interface Faculty {
   total_places: number;
   funding: string;
   link: string;
-  subjects?: Subject[]; // Nested relation
+  subjects: Subject[]; // Nested relation
 }
 
 export interface University {
   id: number;
   name: string;
   logo_url: string | null;
+  uni_type: boolean;
   website_url: string | null;
   created_at: string;
-  faculties?: Faculty[]; // Nested relation
+  faculties: Faculty[]; // Nested relation
 }

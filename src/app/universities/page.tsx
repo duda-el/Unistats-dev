@@ -4,7 +4,6 @@ import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import {
   MapPin,
-  Globe,
   GraduationCap,
   Search,
   Filter,
@@ -16,6 +15,7 @@ import Link from "next/link";
 import { useSupabaseFetch } from "@/src/hooks/useSupabaseFetch";
 import { universityQueries } from "@/src/api/api";
 import { University } from "@/src/types/index";
+import Universityicon from "@/public/Universityicon.svg";
 
 export default function UniversitiesPage() {
   const [search, setSearch] = useState("");
@@ -121,19 +121,23 @@ export default function UniversitiesPage() {
               {/* Card Header */}
               <div className="flex justify-between items-start mb-8">
                 <div className="w-16 h-16 bg-[#F4F7FE] rounded-2xl p-3 flex items-center justify-center border border-gray-100 group-hover:bg-white transition-colors">
-                  {uni.logo_url && (
-                    <Image
-                      width={16}
-                      height={16}
-                      src={uni.logo_url}
-                      alt=""
-                      className="w-full h-full object-contain"
-                    />
-                  )}
+                  <Image
+                    width={64}
+                    height={64}
+                    src={uni.logo_url || Universityicon}
+                    alt={uni.name}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
 
-                <span className="text-[11px] font-bold px-4 py-1.5 rounded-2xl transition-colors bg-[#E6F9F4] text-[#00B589]">
-                  უნივერსიტეტი
+                <span
+                  className={`text-[11px] font-bold px-4 py-1.5 rounded-2xl transition-colors ${
+                    uni.uni_type
+                      ? "bg-[#E9FFF3] text-[#22C55E]"
+                      : "bg-[#EEF2FF] text-[#3B82F6]"
+                  }`}
+                >
+                  {uni.uni_type ? "სახელმწიფო" : "კერძო"}
                 </span>
               </div>
 
@@ -163,9 +167,9 @@ export default function UniversitiesPage() {
               <a
                 href={uni.website_url || "#"}
                 target="_blank"
-                className="w-full py-4 bg-[#F4F7FE] text-brand-primary rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 group-hover:bg-brand-primary group-hover:text-white transition-all shadow-sm"
+                className="w-full py-4 bg-[#F4F7FE] text-brand-primary rounded-2xl text-[12px] font-black uppercase tracking-widest flex items-center justify-center gap-2 group-hover:bg-brand-primary group-hover:text-white transition-all shadow-sm"
               >
-                ეწვიე ვებ-გვერდს <Globe size={14} />
+                სრულად
               </a>
             </div>
           ))}
