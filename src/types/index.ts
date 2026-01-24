@@ -25,6 +25,7 @@ export interface University {
   name: string;
   logo_url: string | null;
   uni_type: boolean;
+  trending: boolean;
   website_url: string | null;
   created_at: string;
   faculties: Faculty[]; // Nested relation
