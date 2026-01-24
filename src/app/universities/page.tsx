@@ -16,6 +16,7 @@ import { universityQueries } from "@/src/api/api";
 import { University } from "@/src/types/index";
 import Universityicon from "@/public/Universityicon.svg";
 import slugify from "slugify";
+import Loading from "@/src/components/Loading";
 
 export default function UniversitiesPage() {
   const [search, setSearch] = useState("");
@@ -24,7 +25,6 @@ export default function UniversitiesPage() {
   const ITEMS_PER_PAGE = 9;
   const [page, setPage] = useState(1);
 
-  // --- FETCHING LOGIC ---
   const query = useMemo(() => universityQueries.getAllFullData(), []);
   const {
     data: universities,
@@ -32,7 +32,6 @@ export default function UniversitiesPage() {
     error,
   } = useSupabaseFetch<University[]>(query);
 
-  // Debugging Consoles
   console.log("Supabase Data:", universities);
   console.log("Fetch Error:", error);
   console.log("Loading State:", loading);
@@ -140,22 +139,17 @@ export default function UniversitiesPage() {
           </div>
         </div>
 
-        {/* Loading & Error States */}
-        {loading && (
-          <p className="text-center font-bold text-slate-400">იტვირთება...</p>
-        )}
+        {loading && <Loading />}
         {error && (
           <p className="text-center font-bold text-red-500">შეცდომა: {error}</p>
         )}
 
-        {/* Grid Container */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {paginatedUnis.map((uni) => (
             <div
               key={uni.id}
               className="group bg-white rounded-[40px] p-8 shadow-sm hover:shadow-2xl hover:shadow-brand-primary/10 border border-gray-50 transition-all duration-500 flex flex-col h-full relative"
             >
-              {/* Card Header */}
               <div className="flex justify-between items-start mb-8">
                 <div className="w-16 h-16 bg-[#F4F7FE] rounded-2xl p-3 flex items-center justify-center border border-gray-100 group-hover:bg-white transition-colors">
                   <Image
@@ -200,7 +194,6 @@ export default function UniversitiesPage() {
                 </div>
               </div>
 
-              {/* Action Button */}
               <a
                 href={`/universities/${slugify(uni.name, {
                   lower: true,
@@ -239,7 +232,6 @@ export default function UniversitiesPage() {
           </div>
         )}
 
-        {/* No Results */}
         {!loading && filteredUnis.length === 0 && (
           <div className="text-center py-20 bg-white rounded-[40px] border border-dashed border-gray-200">
             <p className="text-slate-400 font-bold uppercase text-xs tracking-widest">
