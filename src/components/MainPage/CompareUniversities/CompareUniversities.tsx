@@ -242,7 +242,7 @@ const CompareModal = ({
   onPickFaculty,
 }: CompareModalProps) => {
   return (
-    <div className="fixed inset-0 z-1000 flex items-center justify-center p-6 bg-[#1B2559]/40 backdrop-blur-sm">
+    <div className="fixed inset-0 z-9999999 flex items-center justify-center p-6 bg-[#1B2559]/40 backdrop-blur-sm">
       <div className="bg-white w-full max-w-md rounded-4xl overflow-hidden shadow-2xl">
         <div className="p-6 border-b border-gray-50 flex justify-between items-center">
           <h4 className="font-bold text-[#1B2559]">

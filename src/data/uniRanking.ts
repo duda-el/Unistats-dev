@@ -17,10 +17,4 @@ export const uniRanking = [
     logo: "/uni_pics/free-uni-logo.jpg",
     employmentRate: 25,
   },
-  {
-    id: "04",
-    name: "კავკასიის უნივერსიტეტი",
-    logo: "/uni_pics/cu-logo.jpg",
-    employmentRate: 20,
-  },
 ];

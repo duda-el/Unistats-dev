@@ -127,6 +127,8 @@ const MapSection = () => {
                 <div className="p-0 min-w-40">
                   <div className="flex items-center gap-2 mb-2">
                     <Image
+                      width={6}
+                      height={6}
                       src={uni.image}
                       alt={uni.image}
                       className="w-6 h-6 rounded-md object-contain bg-slate-50 p-1"

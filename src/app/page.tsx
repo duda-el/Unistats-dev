@@ -6,7 +6,6 @@ import UniversityList from "@/src/components/MainPage/UniversityList/UniversityL
 import PromoBanner from "@/src/components/MainPage/PromoBanner/PromoBanner";
 import UniversityRanking from "@/src/components/MainPage/UniversityRanking/UniversityRanking";
 import GeorgiaMap from "@/src/components/MainPage/GeorgiaMap/GeorgiaMap";
-// შემოგვაქვს შედარების ახალი კომპონენტი
 import CompareUniversities from "@/src/components/MainPage/CompareUniversities/CompareUniversities";
 import EventsSection from "@/src/components/MainPage/EventsSection/EventsSection";
 import StudentVibeCard from "@/src/components/MainPage/GrantPredictor/GrantPredictor";
