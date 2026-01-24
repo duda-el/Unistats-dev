@@ -6,36 +6,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { MapPin, ExternalLink, ChevronDown, Search } from "lucide-react";
 import Image from "next/image";
-
-const universities = [
-  {
-    id: 1,
-    name: "თავისუფალი უნივერსიტეტი",
-    shortName: "Free Uni",
-    coords: [41.8058, 44.7677] as [number, number],
-    address: "დავით აღმაშენებლის ხეივანი 240",
-    workingHours: "09:00 - 20:00",
-    image: "/uni_pics/free-uni-logo.jpg",
-  },
-  {
-    id: 2,
-    name: "ქართულ-ამერიკული უნივერსიტეტი",
-    shortName: "GAU",
-    coords: [41.7166, 44.7831] as [number, number],
-    address: "მერაბ ალექსიძის ქ. 10",
-    workingHours: "10:00 - 19:00",
-    image: "/uni_pics/gau-logo.png",
-  },
-  {
-    id: 3,
-    name: "თბილისის სახელმწიფო უნივერსიტეტი",
-    shortName: "TSU",
-    coords: [41.7093, 44.7785] as [number, number],
-    address: "ილია ჭავჭავაძის გამზ. 1",
-    workingHours: "09:00 - 18:00",
-    image: "/uni_pics/tsu-logo.png",
-  },
-];
+import { mapData } from "@/src/data/mapData";
 
 const MapController = ({
   targetCoords,
@@ -100,7 +71,7 @@ const MapSection = () => {
           {isOpen && (
             <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-2xl border border-gray-50 overflow-hidden z-1001 animate-in fade-in slide-in-from-top-1 duration-200">
               <div className="p-1 max-h-40 xl:max-h-60 overflow-y-auto custom-scrollbar">
-                {universities.map((uni) => (
+                {mapData.map((uni) => (
                   <button
                     key={uni.id}
                     onClick={() => {
@@ -144,7 +115,7 @@ const MapSection = () => {
 
           <MapController targetCoords={selectedCoords} />
 
-          {universities.map((uni) => (
+          {mapData.map((uni) => (
             <Marker
               key={uni.id}
               position={uni.coords}
