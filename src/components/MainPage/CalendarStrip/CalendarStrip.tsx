@@ -33,7 +33,7 @@ const CalendarStrip = () => {
   const days = getWeekDays();
 
   return (
-    <div className="bg-white rounded-[32px] p-5 shadow-sm border border-gray-50 relative w-full">
+    <div className="bg-white rounded-4xl p-5 shadow-sm border border-gray-50 relative w-full">
       <div className="flex justify-between items-center relative">
         {days.map((day, index) => (
           <div
@@ -54,11 +54,13 @@ const CalendarStrip = () => {
 
             <span className="text-lg font-bold tracking-tight">{day.date}</span>
 
-            {day.active && <div className="w-1.5 h-1.5 bg-white rounded-full mt-1" />}
+            {day.active && (
+              <div className="w-1.5 h-1.5 bg-white rounded-full mt-1" />
+            )}
           </div>
         ))}
 
-        <div className="absolute -bottom-1 -right-0">
+        <div className="absolute -bottom-1 right-0">
           <CalendarIcon size={18} className="text-brand-primary" />
         </div>
       </div>
