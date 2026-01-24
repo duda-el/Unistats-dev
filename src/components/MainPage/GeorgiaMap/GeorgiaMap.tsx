@@ -84,6 +84,8 @@ const MapSection = () => {
                       <Image
                         src={uni.image}
                         alt=""
+                        width={7}
+                        height={7}
                         className="w-full h-full object-contain"
                       />
                     </div>
