@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 const Header = () => {
   const pathname = usePathname();
 
-  // URL-ის მიხედვით სათაურების რუკა
   const titles: { [key: string]: string } = {
     "/": "მთავარი",
     "/statistics": "სტატისტიკა",
@@ -24,13 +23,23 @@ const Header = () => {
 
       <div className="flex items-center gap-6">
         <div className="flex items-center gap-2 cursor-pointer group px-3 py-1.5 rounded-xl hover:bg-slate-50 transition-all">
-          <Languages size={18} className="text-slate-400 group-hover:text-blue-600" />
-          <span className="text-sm font-semibold text-slate-500 group-hover:text-slate-800">ENG (US)</span>
+          <Languages
+            size={18}
+            className="text-slate-400 group-hover:text-blue-600"
+          />
+          <span className="text-sm font-semibold text-slate-500 group-hover:text-slate-800">
+            ENG (US)
+          </span>
         </div>
 
         <div className="flex items-center gap-2 cursor-pointer group px-3 py-1.5 rounded-xl hover:bg-slate-50 transition-all">
-          <Moon size={18} className="text-slate-400 group-hover:text-blue-600" />
-          <span className="text-sm font-semibold text-slate-500 group-hover:text-slate-800">მუქი თემა</span>
+          <Moon
+            size={18}
+            className="text-slate-400 group-hover:text-blue-600"
+          />
+          <span className="text-sm font-semibold text-slate-500 group-hover:text-slate-800">
+            მუქი თემა
+          </span>
         </div>
       </div>
     </header>
