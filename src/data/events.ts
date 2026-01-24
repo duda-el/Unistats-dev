@@ -1,0 +1,32 @@
+export const events = [
+  {
+    id: 1,
+    title: "ღია კარის დღე - GAU",
+    date: "24",
+    month: "იან",
+    time: "14:00",
+    location: "მერაბ ალექსიძის ქ. 10",
+    category: "უნივერსიტეტი",
+    color: "bg-blue-500",
+  },
+  {
+    id: 2,
+    title: "სტუდენტური ფორუმი 2024",
+    date: "28",
+    month: "იან",
+    time: "11:00",
+    location: "ექსპო ჯორჯია",
+    category: "კარიერა",
+    color: "bg-purple-500",
+  },
+  {
+    id: 3,
+    title: "ინოვაციების ფესტივალი",
+    date: "02",
+    month: "თებ",
+    time: "16:30",
+    location: "თავისუფალი უნივერსიტეტი",
+    category: "ტექნოლოგიები",
+    color: "bg-emerald-500",
+  },
+];

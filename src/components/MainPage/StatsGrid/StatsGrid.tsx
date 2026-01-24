@@ -39,7 +39,7 @@ const stats = [
 
 const StatsGrid = () => {
   return (
-    <div className="bg-white rounded-[32px] p-8 shadow-sm border border-gray-50 h-full flex flex-col">
+    <div className="bg-white rounded-4xl p-8 shadow-sm border border-gray-50 h-full flex flex-col">
       <div className="mb-8">
         <h3 className="text-xl font-bold text-slate-800">
           2024 წლის მონაცემები

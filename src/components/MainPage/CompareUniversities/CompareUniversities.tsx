@@ -11,18 +11,43 @@ import {
   TrendingUp,
   CheckCircle2,
 } from "lucide-react";
+
 import { universities } from "@/src/data/universities";
 import type { University, Faculty } from "@/src/data/universities";
+
+type ModalSlot = 1 | 2;
+type Unit = "%" | "₾";
 
 interface SlotSelection {
   uni: University | null;
   faculty: Faculty | null;
 }
 
-type ModalSlot = 1 | 2;
-type Unit = "%" | "₾";
+interface SlotFilled {
+  uni: University;
+  faculty: Faculty;
+}
 
-const CompareUniversities = () => {
+const isSlotFilled = (s: SlotSelection): s is SlotFilled =>
+  s.uni !== null && s.faculty !== null;
+
+type ModalStep = "chooseUni" | "chooseFaculty";
+
+interface ModalState {
+  open: boolean;
+  slot: ModalSlot | null;
+  step: ModalStep;
+  uni: University | null;
+}
+
+const initialModal: ModalState = {
+  open: false,
+  slot: null,
+  step: "chooseUni",
+  uni: null,
+};
+
+export default function CompareUniversities() {
   const [slot1, setSlot1] = useState<SlotSelection>({
     uni: null,
     faculty: null,
@@ -32,21 +57,30 @@ const CompareUniversities = () => {
     faculty: null,
   });
 
-  const [activeModal, setActiveModal] = useState<ModalSlot | null>(null);
-  const [selectedUniForModal, setSelectedUniForModal] =
-    useState<University | null>(null);
+  const [modal, setModal] = useState<ModalState>(initialModal);
 
-  const handleFinalSelection = (faculty: Faculty) => {
-    if (!activeModal || !selectedUniForModal) return;
+  const openModal = (slot: ModalSlot) => {
+    setModal({ open: true, slot, step: "chooseUni", uni: null });
+  };
 
-    const selection: SlotSelection = { uni: selectedUniForModal, faculty };
+  const closeModal = () => setModal(initialModal);
 
-    if (activeModal === 1) setSlot1(selection);
+  const pickUni = (uni: University) => {
+    setModal((m) => ({ ...m, step: "chooseFaculty", uni }));
+  };
+
+  const pickFaculty = (faculty: Faculty) => {
+    if (!modal.open || !modal.slot || !modal.uni) return;
+
+    const selection: SlotSelection = { uni: modal.uni, faculty };
+
+    if (modal.slot === 1) setSlot1(selection);
     else setSlot2(selection);
 
-    setActiveModal(null);
-    setSelectedUniForModal(null);
+    closeModal();
   };
+
+  const canCompare = isSlotFilled(slot1) && isSlotFilled(slot2);
 
   return (
     <div className="bg-white rounded-[40px] p-8 shadow-sm border border-gray-50 relative">
@@ -61,43 +95,39 @@ const CompareUniversities = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-11 gap-6 items-center mb-12">
-        <div className="lg:col-span-5 ">
-          {slot1.uni ? (
-            <SelectedDisplay
-              slot={slot1 as SlotFilled}
-              onClear={() => setSlot1({ uni: null, faculty: null })}
-              onEdit={() => {
-                setSelectedUniForModal(slot1.uni);
-                setActiveModal(1);
-              }}
-            />
-          ) : (
-            <EmptySlot onClick={() => setActiveModal(1)} />
-          )}
+        <div className="lg:col-span-5">
+          <SlotCard
+            slot={slot1}
+            modalSlot={1}
+            onOpen={openModal}
+            onClear={() => setSlot1({ uni: null, faculty: null })}
+            onEdit={(uni) =>
+              setModal({ open: true, slot: 1, step: "chooseFaculty", uni })
+            }
+          />
         </div>
+
         <div className="lg:col-span-1 flex justify-center">
           <div className="w-12 h-12 rounded-full bg-[#F4F7FE] flex items-center justify-center border-4 border-white shadow-sm">
             <GitCompare size={20} className="text-brand-primary" />
           </div>
         </div>
+
         <div className="lg:col-span-5">
-          {slot2.uni ? (
-            <SelectedDisplay
-              slot={slot2 as SlotFilled}
-              onClear={() => setSlot2({ uni: null, faculty: null })}
-              onEdit={() => {
-                setSelectedUniForModal(slot2.uni);
-                setActiveModal(2);
-              }}
-            />
-          ) : (
-            <EmptySlot onClick={() => setActiveModal(2)} />
-          )}
+          <SlotCard
+            slot={slot2}
+            modalSlot={2}
+            onOpen={openModal}
+            onClear={() => setSlot2({ uni: null, faculty: null })}
+            onEdit={(uni) =>
+              setModal({ open: true, slot: 2, step: "chooseFaculty", uni })
+            }
+          />
         </div>
       </div>
 
       {/* Stats Section */}
-      {slot1.faculty && slot2.faculty && (
+      {canCompare && (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <ComparisonMetric
             label="დასაქმების შანსი"
@@ -122,7 +152,7 @@ const CompareUniversities = () => {
               label="წლიური ფასი"
               v1={`${slot1.faculty.stats.price}₾`}
               v2={`${slot2.faculty.stats.price}₾`}
-              isLowerBetter={true}
+              isLowerBetter
               rawV1={slot1.faculty.stats.price}
               rawV2={slot2.faculty.stats.price}
             />
@@ -137,61 +167,16 @@ const CompareUniversities = () => {
         </div>
       )}
 
-      {/* Modal & Custom Scrollbar logic remains similar but UI updated */}
-      {activeModal && (
-        <div className="fixed inset-0 z-1000 flex items-center justify-center p-6 bg-[#1B2559]/40 backdrop-blur-sm">
-          <div className="bg-white w-full max-w-md rounded-4xl overflow-hidden shadow-2xl">
-            <div className="p-6 border-b border-gray-50 flex justify-between items-center">
-              <h4 className="font-bold text-[#1B2559]">
-                {selectedUniForModal
-                  ? "აირჩიე მიმართულება"
-                  : "აირჩიე უნივერსიტეტი"}
-              </h4>
-              <button
-                onClick={() => {
-                  setActiveModal(null);
-                  setSelectedUniForModal(null);
-                }}
-              >
-                <X
-                  size={20}
-                  className="text-gray-300 cursor-pointer hover:text-[#1B2559] transition-all duration-200 ease-in-out"
-                />
-              </button>
-            </div>
-            <div className="p-4 max-h-100 overflow-y-auto custom-scrollbar">
-              {!selectedUniForModal
-                ? universities.map((uni) => (
-                    <button
-                      key={uni.id}
-                      onClick={() => setSelectedUniForModal(uni)}
-                      className="w-full flex items-center gap-4 p-4 hover:bg-[#F4F7FE] rounded-2xl transition-all mb-2 border border-transparent hover:border-brand-primary/20 group cursor-pointer"
-                    >
-                      <div className="w-10 h-10 relative bg-white rounded-lg p-1 shadow-sm">
-                        <Image
-                          src={uni.logo}
-                          alt=""
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                      <span className="font-bold text-[#1B2559] group-hover:text-brand-primary uppercase text-sm">
-                        {uni.name}
-                      </span>
-                    </button>
-                  ))
-                : selectedUniForModal.faculties.map((f) => (
-                    <button
-                      key={f.id}
-                      onClick={() => handleFinalSelection(f)}
-                      className="w-full text-left p-4 hover:bg-brand-primary hover:text-white rounded-2xl mb-2 transition-all font-bold text-sm"
-                    >
-                      {f.name}
-                    </button>
-                  ))}
-            </div>
-          </div>
-        </div>
+      {/* Modal */}
+      {modal.open && (
+        <CompareModal
+          step={modal.step}
+          uni={modal.uni}
+          universities={universities}
+          onClose={closeModal}
+          onPickUni={pickUni}
+          onPickFaculty={pickFaculty}
+        />
       )}
 
       <style jsx>{`
@@ -208,9 +193,111 @@ const CompareUniversities = () => {
       `}</style>
     </div>
   );
+}
+
+/* ---------- Small Components ---------- */
+
+interface SlotCardProps {
+  slot: SlotSelection;
+  modalSlot: ModalSlot;
+  onOpen: (slot: ModalSlot) => void;
+  onClear: () => void;
+  onEdit: (uni: University) => void;
+}
+
+const SlotCard = ({
+  slot,
+  modalSlot,
+  onOpen,
+  onClear,
+  onEdit,
+}: SlotCardProps) => {
+  if (isSlotFilled(slot)) {
+    return (
+      <SelectedDisplay
+        slot={slot}
+        onClear={onClear}
+        onEdit={() => onEdit(slot.uni)}
+      />
+    );
+  }
+  return <EmptySlot onClick={() => onOpen(modalSlot)} />;
 };
 
-// --- Updated UI Components for Clarity ---
+interface CompareModalProps {
+  step: ModalStep;
+  uni: University | null;
+  universities: University[];
+  onClose: () => void;
+  onPickUni: (uni: University) => void;
+  onPickFaculty: (faculty: Faculty) => void;
+}
+
+const CompareModal = ({
+  step,
+  uni,
+  universities,
+  onClose,
+  onPickUni,
+  onPickFaculty,
+}: CompareModalProps) => {
+  return (
+    <div className="fixed inset-0 z-1000 flex items-center justify-center p-6 bg-[#1B2559]/40 backdrop-blur-sm">
+      <div className="bg-white w-full max-w-md rounded-4xl overflow-hidden shadow-2xl">
+        <div className="p-6 border-b border-gray-50 flex justify-between items-center">
+          <h4 className="font-bold text-[#1B2559]">
+            {step === "chooseFaculty"
+              ? "აირჩიე მიმართულება"
+              : "აირჩიე უნივერსიტეტი"}
+          </h4>
+          <button onClick={onClose}>
+            <X
+              size={20}
+              className="text-gray-300 cursor-pointer hover:text-[#1B2559] transition-all duration-200 ease-in-out"
+            />
+          </button>
+        </div>
+
+        <div className="p-4 max-h-100 overflow-y-auto custom-scrollbar">
+          {step === "chooseUni" ? (
+            universities.map((u) => (
+              <button
+                key={u.id}
+                onClick={() => onPickUni(u)}
+                className="w-full flex items-center gap-4 p-4 hover:bg-[#F4F7FE] rounded-2xl transition-all mb-2 border border-transparent hover:border-brand-primary/20 group cursor-pointer"
+              >
+                <div className="w-10 h-10 relative bg-white rounded-lg p-1 shadow-sm">
+                  <Image
+                    src={u.logo}
+                    alt={u.name}
+                    fill
+                    sizes="40px"
+                    className="object-contain"
+                  />
+                </div>
+                <span className="font-bold text-[#1B2559] group-hover:text-brand-primary uppercase text-sm">
+                  {u.name}
+                </span>
+              </button>
+            ))
+          ) : (
+            <>
+              {uni?.faculties.map((f) => (
+                <button
+                  key={f.id}
+                  onClick={() => onPickFaculty(f)}
+                  className="w-full text-left p-4 hover:bg-brand-primary hover:text-white rounded-2xl mb-2 transition-all font-bold text-sm"
+                >
+                  {f.name}
+                </button>
+              ))}
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 interface ComparisonMetricProps {
   label: string;
@@ -264,7 +351,11 @@ const ComparisonMetric = ({
           </div>
           <div className="h-3 bg-slate-50 rounded-full overflow-hidden">
             <div
-              className={`h-full transition-all duration-1000 ${winner === 1 ? "bg-brand-primary shadow-[0_0_15px_rgba(59,130,246,0.5)]" : "bg-slate-200"}`}
+              className={`h-full transition-all duration-1000 ${
+                winner === 1
+                  ? "bg-brand-primary shadow-[0_0_15px_rgba(59,130,246,0.5)]"
+                  : "bg-slate-200"
+              }`}
               style={{ width: `${w1}%` }}
             />
           </div>
@@ -290,7 +381,11 @@ const ComparisonMetric = ({
           </div>
           <div className="h-3 bg-slate-50 rounded-full overflow-hidden">
             <div
-              className={`h-full transition-all duration-1000 ${winner === 2 ? "bg-brand-primary shadow-[0_0_15px_rgba(59,130,246,0.5)]" : "bg-slate-200"}`}
+              className={`h-full transition-all duration-1000 ${
+                winner === 2
+                  ? "bg-brand-primary shadow-[0_0_15px_rgba(59,130,246,0.5)]"
+                  : "bg-slate-200"
+              }`}
               style={{ width: `${w2}%` }}
             />
           </div>
@@ -313,16 +408,18 @@ const BadgeStat = ({
   label,
   v1,
   v2,
-  isLowerBetter,
+  isLowerBetter = false,
   rawV1,
   rawV2,
 }: BadgeStatProps) => {
   const isV1Better = isLowerBetter ? rawV1 < rawV2 : rawV1 > rawV2;
+
   return (
     <div className="bg-[#F4F7FE]/50 p-5 rounded-3xl border border-gray-50/50">
       <span className="text-[10px] font-black text-[#A3AED0] uppercase block mb-4 tracking-widest">
         {label}
       </span>
+
       <div className="flex justify-between items-center">
         <div className="text-center">
           <p
@@ -334,7 +431,9 @@ const BadgeStat = ({
             className={`h-1 w-8 mx-auto mt-1 rounded-full ${isV1Better ? "bg-brand-primary" : "bg-transparent"}`}
           />
         </div>
+
         <div className="h-8 w-px bg-slate-200" />
+
         <div className="text-center">
           <p
             className={`text-base font-black ${!isV1Better ? "text-[#1B2559]" : "text-slate-400"}`}
@@ -350,11 +449,6 @@ const BadgeStat = ({
   );
 };
 
-interface SlotFilled {
-  uni: University;
-  faculty: Faculty;
-}
-
 interface SelectedDisplayProps {
   slot: SlotFilled;
   onClear: () => void;
@@ -369,14 +463,22 @@ const SelectedDisplay = ({ slot, onClear, onEdit }: SelectedDisplayProps) => (
     >
       <X size={14} />
     </button>
+
     <div className="flex items-center gap-4 mb-4">
       <div className="w-12 h-12 relative bg-white rounded-2xl p-2 shadow-sm border border-gray-50">
-        <Image src={slot.uni.logo} alt="" fill className="object-contain p-1" />
+        <Image
+          src={slot.uni.logo}
+          alt={slot.uni.name}
+          fill
+          sizes="48px"
+          className="object-contain p-1"
+        />
       </div>
       <h4 className="font-black text-[#1B2559] uppercase text-xs">
         {slot.uni.name}
       </h4>
     </div>
+
     <div
       onClick={onEdit}
       className="bg-white rounded-2xl p-3 flex justify-between items-center cursor-pointer hover:ring-2 ring-brand-primary/10 transition-all"
@@ -411,5 +513,3 @@ const EmptySlot = ({ onClick }: EmptySlotProps) => (
     </span>
   </button>
 );
-
-export default CompareUniversities;

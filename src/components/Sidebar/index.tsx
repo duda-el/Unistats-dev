@@ -30,10 +30,19 @@ const Sidebar = () => {
     <aside className="w-64 h-screen bg-white border-r border-gray-100 flex flex-col fixed left-0 top-0 z-20">
       <div className="p-8">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/30 overflow-hidden">
-            <Image src="/unistats-logo.svg" alt="Logo" width={26} height={26} priority />
+          <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/30 overflow-hidden relative">
+            <Image
+              src="/unistats-logo.svg"
+              alt="Logo"
+              fill
+              priority
+              className="object-contain p-2"
+            />
           </div>
-          <span className="text-2xl font-bold text-slate-800 tracking-tight">UNISTATS</span>
+
+          <span className="text-2xl font-bold text-slate-800 tracking-tight">
+            UNISTATS
+          </span>
         </div>
       </div>
 
@@ -58,18 +67,34 @@ const Sidebar = () => {
       </nav>
 
       {/* Footer Section of Sidebar */}
-      <div className="relative mt-auto min-h-[230px] bg-blue-600 flex flex-col justify-end items-center pb-6 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full rotate-180 leading-[0]">
-          <svg viewBox="0 0 500 150" preserveAspectRatio="none" className="h-[70px] w-full">
-            <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" className="fill-white"></path>
+      <div className="relative mt-auto min-h-57.5 bg-blue-600 flex flex-col justify-end items-center pb-6 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full rotate-180 leading-0">
+          <svg
+            viewBox="0 0 500 150"
+            preserveAspectRatio="none"
+            className="h-17.5 w-full"
+          >
+            <path
+              d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+              className="fill-white"
+            ></path>
           </svg>
         </div>
         <div className="flex gap-5 mb-4 relative z-10 text-white/90">
-          <Facebook size={20} className="hover:text-white cursor-pointer transition-colors" />
-          <Instagram size={20} className="hover:text-white cursor-pointer transition-colors" />
-          <Globe size={20} className="hover:text-white cursor-pointer transition-colors" />
+          <Facebook
+            size={20}
+            className="hover:text-white cursor-pointer transition-colors"
+          />
+          <Instagram
+            size={20}
+            className="hover:text-white cursor-pointer transition-colors"
+          />
+          <Globe
+            size={20}
+            className="hover:text-white cursor-pointer transition-colors"
+          />
         </div>
-        <div className="w-10/12 h-[1px] bg-white/20 mb-4 relative z-10" />
+        <div className="w-10/12 h-px bg-white/20 mb-4 relative z-10" />
         <p className="text-[11px] font-medium text-white/60 tracking-wider relative z-10 uppercase">
           Copyright © 2024 UNISTATS
         </p>

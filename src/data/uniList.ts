@@ -1,0 +1,58 @@
+export const uniList = [
+  {
+    id: 1,
+    name: "GAU",
+    city: "თბილისი",
+    type: "კერძო",
+    logo: "/uni_pics/gau-logo.png",
+  },
+  {
+    id: 2,
+    name: "Free Uni",
+    city: "თბილისი",
+    type: "კერძო",
+    logo: "/uni_pics/free-uni-logo.jpg",
+  },
+  {
+    id: 3,
+    name: "TSU",
+    city: "თბილისი",
+    type: "სახელმწიფო",
+    logo: "/uni_pics/tsu-logo.png",
+  },
+  {
+    id: 4,
+    name: "KIU",
+    city: "ქუთაისი",
+    type: "სახელმწიფო",
+    logo: "/uni_pics/kiu-logo.jpg",
+  },
+  {
+    id: 5,
+    name: "CU",
+    city: "თბილისი",
+    type: "კერძო",
+    logo: "/uni_pics/cu-logo.jpg",
+  },
+  {
+    id: 6,
+    name: "ISU",
+    city: "თბილისი",
+    type: "სახელმწიფო",
+    logo: "/uni_pics/isu-logo.png",
+  },
+  {
+    id: 7,
+    name: "SEU",
+    city: "თბილისი",
+    type: "კერძო",
+    logo: "/uni_pics/seu-logo.png",
+  },
+  {
+    id: 8,
+    name: "GTU",
+    city: "თბილისი",
+    type: "სახელმწიფო",
+    logo: "/uni_pics/gtu-logo.jpg",
+  },
+];

@@ -1,38 +1,6 @@
 import React from "react";
 import { Calendar, MapPin, ArrowRight, Bell } from "lucide-react";
-
-const events = [
-  {
-    id: 1,
-    title: "ღია კარის დღე - GAU",
-    date: "24",
-    month: "იან",
-    time: "14:00",
-    location: "მერაბ ალექსიძის ქ. 10",
-    category: "უნივერსიტეტი",
-    color: "bg-blue-500",
-  },
-  {
-    id: 2,
-    title: "სტუდენტური ფორუმი 2024",
-    date: "28",
-    month: "იან",
-    time: "11:00",
-    location: "ექსპო ჯორჯია",
-    category: "კარიერა",
-    color: "bg-purple-500",
-  },
-  {
-    id: 3,
-    title: "ინოვაციების ფესტივალი",
-    date: "02",
-    month: "თებ",
-    time: "16:30",
-    location: "თავისუფალი უნივერსიტეტი",
-    category: "ტექნოლოგიები",
-    color: "bg-emerald-500",
-  },
-];
+import { events } from "@/src/data/events";
 
 const EventsSection = () => {
   return (
@@ -40,8 +8,12 @@ const EventsSection = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h3 className="text-xl font-bold text-[#1B2559]">მომავალი ღონისძიებები</h3>
-          <p className="text-xs font-medium text-[#A3AED0]">არ გამოტოვო სიახლე</p>
+          <h3 className="text-xl font-bold text-[#1B2559]">
+            მომავალი ღონისძიებები
+          </h3>
+          <p className="text-xs font-medium text-[#A3AED0]">
+            არ გამოტოვო სიახლე
+          </p>
         </div>
         <button className="p-3 bg-[#F4F7FE] text-brand-primary rounded-2xl hover:bg-brand-primary hover:text-white transition-all duration-300 shadow-sm">
           <Bell size={20} />
@@ -56,9 +28,13 @@ const EventsSection = () => {
             className="group relative flex items-center gap-5 p-4 rounded-[28px] border border-transparent hover:border-gray-100 hover:bg-[#F4F7FE]/50 transition-all duration-300 cursor-pointer"
           >
             {/* Date Badge */}
-            <div className="flex flex-col items-center justify-center min-w-[65px] h-[75px] bg-[#F4F7FE] rounded-2xl group-hover:bg-white group-hover:shadow-lg transition-all duration-300">
-              <span className="text-xl font-black text-brand-primary">{event.date}</span>
-              <span className="text-[10px] font-bold text-slate-400 uppercase">{event.month}</span>
+            <div className="flex flex-col items-center justify-center min-w-16.25 h-18.75 bg-[#F4F7FE] rounded-2xl group-hover:bg-white group-hover:shadow-lg transition-all duration-300">
+              <span className="text-xl font-black text-brand-primary">
+                {event.date}
+              </span>
+              <span className="text-[10px] font-bold text-slate-400 uppercase">
+                {event.month}
+              </span>
             </div>
 
             {/* Event Info */}
@@ -79,7 +55,7 @@ const EventsSection = () => {
                 </div>
                 <div className="flex items-center gap-1.5 text-slate-400">
                   <MapPin size={12} />
-                  <span className="text-[10px] font-bold truncate max-w-[120px]">
+                  <span className="text-[10px] font-bold truncate max-w-30">
                     {event.location}
                   </span>
                 </div>
