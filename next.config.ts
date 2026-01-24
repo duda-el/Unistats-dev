@@ -53,7 +53,8 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "online.newvision.ge" },
       { protocol: "https", hostname: "forms.tma.edu.ge" },
       { protocol: "https", hostname: "avicenna.edu.ge" },
-      
+      { protocol: "https", hostname: "images.unsplash.com" },
+
       // Non-HTTPS domains
       { protocol: "http", hostname: "gelati.edu.ge" },
     ],
