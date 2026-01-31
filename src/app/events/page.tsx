@@ -69,7 +69,7 @@ export default function StudentEventsPage() {
 
   return (
     <main className="min-h-screen bg-white w-full disabled-link">
-      <div className="max-w-[1400px] mx-auto p-6 md:p-10 w-full">
+      <div className="max-w-[1400px] mx-auto p-6 lg:p-10 w-full">
         {/* Top Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
           <div>
@@ -138,7 +138,7 @@ export default function StudentEventsPage() {
         </div>
 
         {/* Categories Filter - Placed under Main Banner */}
-        <div className="flex gap-4 mb-10 overflow-x-auto pb-4 custom-scrollbar">
+        <div className="flex flex-wrap gap-4 mb-10 overflow-x-auto pb-4 custom-scrollbar">
           {["ყველა", "გართობა", "ოფიციალური", "ტექნოლოგიები", "სპორტი"].map(
             (cat) => (
               <button

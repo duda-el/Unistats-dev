@@ -16,12 +16,12 @@ const Header = () => {
   };
 
   return (
-    <header className="h-20 bg-white/80 backdrop-blur-md fixed top-0 right-0 left-64 z-99999 px-8 flex items-center justify-between border-b border-gray-50">
+    <header className="h-20 bg-white/80 backdrop-blur-md fixed top-0 right-0 left-0 lg:left-64 z-99999 px-8 flex items-center justify-between border-b border-gray-50">
       <h2 className="text-2xl font-bold text-slate-800 animate-in fade-in slide-in-from-left-4 duration-500">
         {titles[pathname] || "UNISTATS"}
       </h2>
 
-      <div className="flex items-center gap-6">
+      {/* <div className="flex items-center gap-6">
         <div className="flex items-center gap-2 cursor-pointer group px-3 py-1.5 rounded-xl hover:bg-slate-50 transition-all">
           <Languages
             size={18}
@@ -41,7 +41,7 @@ const Header = () => {
             მუქი თემა
           </span>
         </div>
-      </div>
+      </div> */}
     </header>
   );
 };
